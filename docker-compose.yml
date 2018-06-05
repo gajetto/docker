@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  nginx-service:
+    build: ./nginx-service
+    volumes:
+      - ./nginx-service:/usr/src/app
+     ports:
+       - 5000:80
+
+  database:
+    image: mysql:python
+    volumes:
+      - ./database:/var/www/database
+    ports:
+      - 5001:3306
+    depends_on :
+      - nginx-service
